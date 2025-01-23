@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 110vh;
+      background: #333;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      height: 300%;
+      max-width: 800px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .left-panel {
+      flex: 1;
+      background: url('') no-repeat center center/cover;
+      display: flex;
+    }
+
+    .right-panel {
+      flex: 1;
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .sign-up-heading {
+      font-size: 2rem;
+      color: #333;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .right-panel h1 {
+      font-size: 1.5rem;
+      color: #000;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    .form-group label span {
+      color: red;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 85%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 0.9rem;
+      position: absolute;
+      bottom: -18px;
+      left: 5px;
+    }
+
+    .captcha {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .captcha-code {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #050708;
+      padding: 5px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      user-select: none;
+    }
+
+    .captcha input {
+      margin-left: 15px;
+      flex: 1;
+    }
+
+    .captcha-refresh {
+      margin-left: 10px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #111213;
+    }
+
+    .captcha-refresh:hover {
+      color: #0b0d0e;
+    }
+
+    .btn {
+      width: 85%;
+      padding: 10px;
+      font-size: 1rem;
+      background: #e45ab2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .login-link a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    .password-container,
+    .retypepassword-container {
+      position: relative;
+      width: 85%;
+    }
+
+    .password-container input,
+    .retypepassword-container input {
+      width: 100%;
+      padding: 8px;
+      padding-right: 35px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .google-btn {
+      width: 85%;
+      padding: 10px;
+      font-size: 1rem;
+      background: #e45ab2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .google-btn:hover {
+      background: #357ae8;
+    }
+  </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="sign-up-heading">Sign Up</div>
+  <div class="container">
+    <div class="left-panel">
+        <img src="img/WH.jpg" width="350" height="800">
+    </div>
+    <div class="right-panel">
+      <h1>Create an account</h1>
+      <form id="signupForm">
+        <div class="form-group">
+          <label for="fullName">Full Name <span>*</span></label>
+          <input type="text" id="fullName" required />
+          <div class="error-message" id="fullNameError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email <span>*</span></label>
+          <input type="email" id="email" required />
+          <div class="error-message" id="emailError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="designation">Designation</label>
+          <input type="text" id="designation" />
+        </div>
+
+        <div class="form-group">
+          <label for="city">City <span>*</span></label>
+          <select id="city" required>
+            <option value="" disabled selected>Select your city</option>
+            <option value="Agra">Agra</option>
+            <option value="Ahmedabad">Ahmedabad</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Bhopal">Bhopal</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Coimbatore">Coimbatore</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Erode">Erode</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Indore">Indore</option>
+            <option value="Jaipur">Jaipur</option>
+            <option value="Kanchipuram">Kanchipuram</option>
+            <option value="Kanpur">Kanpur</option>
+            <option value="Karur">Karur</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Lucknow">Lucknow</option>
+            <option value="Madurai">Madurai</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Nagapattinam">Nagapattinam</option>
+            <option value="Nagpur">Nagpur</option>
+            <option value="Namakkal">Namakkal</option>
+            <option value="Patna">Patna</option>
+            <option value="Pollachi">Pollachi</option>
+            <option value="Pondicherry">Pondicherry</option>
+            <option value="Pune">Pune</option>
+            <option value="Rameswaram">Rameswaram</option>
+            <option value="Salem">Salem</option>
+            <option value="Surat">Surat</option>
+            <option value="Thanjavur">Thanjavur</option>
+            <option value="Theni">Theni</option>
+            <option value="Thiruvallur">Thiruvallur</option>
+            <option value="Thiruvarur">Thiruvarur</option>
+            <option value="Thoothukudi">Thoothukudi</option>
+            <option value="Tiruchirappalli">Tiruchirappalli</option>
+            <option value="Tirunelveli">Tirunelveli</option>
+            <option value="Tiruppur">Tiruppur</option>
+            <option value="Tiruvannamalai">Tiruvannamalai</option>
+            <option value="Vadodara">Vadodara</option>
+            <option value="Vellore">Vellore</option>
+            <option value="Viluppuram">Viluppuram</option>
+            <option value="Visakhapatnam">Visakhapatnam</option>
+            <option value="Virudhunagar">Virudhunagar</option>
+          </select>
+          <div class="error-message" id="cityError"></div>
+        </div>
+        
+
+        <div class="form-group">
+          <label for="username">Username <span>*</span></label>
+          <input type="text" id="username" required />
+          <div class="error-message" id="usernameError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password <span>*</span></label>
+          <div class="password-container">
+            <input type="password" id="password" required />
+            <span class="toggle-password" onclick="togglePasswordVisibility('password', this)">
+              <i class="fas fa-eye-slash"></i>
+            </span>
+          </div>
+          <div class="error-message" id="passwordError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="retypePassword">Retype Password <span>*</span></label>
+          <div class="retypepassword-container">
+            <input type="password" id="retypePassword" required />
+            <span class="toggle-password" onclick="togglePasswordVisibility('retypePassword', this)">
+              <i class="fas fa-eye-slash"></i>
+            </span>
+          </div>
+          <div class="error-message" id="retypePasswordError"></div>
+        </div>
+
+        <div class="form-group captcha">
+          <span class="captcha-code" id="captchaCode"></span>
+          <input type="text" id="captchaInput" placeholder="Enter CAPTCHA" required />
+          <span class="captcha-refresh" id="refreshCaptcha">&#x21bb;</span>
+        </div>
+
+        <button type="submit" class="btn">Sign Up <a href="form.html"> </a></button>
+        <button type="button" class="google-btn">Sign Up with Google</button>
+        <div class="login-link"><p>Already have an account? <a href="form.html">Login</a></p>
+        </div>
+      </form>
+    </div>
+  
+
+  <script>
+    // Generate CAPTCHA code
+    function generateCaptcha() {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let captcha = '';
+      for (let i = 0; i < 6; i++) {
+        captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return captcha;
+    }
+
+    // Load CAPTCHA on page load
+    const captchaCodeElement = document.getElementById('captchaCode');
+    const captchaInputElement = document.getElementById('captchaInput');
+    const refreshCaptchaButton = document.getElementById('refreshCaptcha');
+
+    function loadCaptcha() {
+      const captcha = generateCaptcha();
+      captchaCodeElement.textContent = captcha;
+      captchaInputElement.value = '';
+    }
+
+    loadCaptcha();
+
+    // Refresh CAPTCHA on icon click
+    refreshCaptchaButton.addEventListener('click', loadCaptcha);
+
+    document.getElementById('signupForm').addEventListener('submit', function (e) {
+  e.preventDefault(); // Prevent form from submitting normally
+
+  // Validation
+  const username = document.getElementById('username').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const retypePassword = document.getElementById('retypePassword').value;
+
+  const usernameRegex = /^[a-zA-Z0-9_]*$/; // Allow only alphabets, numbers, and underscore
+if (username.length < 3 || username.length > 10) {
+  alert('Username must be between 3 and 8 characters long.');
+  return;
+}
+if (!usernameRegex.test(username)) {
+  alert('Username can only include alphabets, numbers, and underscores.');
+  return;
+}
+
+
+  if (!email.endsWith('@gmail.com')) {
+    alert('Email must be a valid @gmail.com address.');
+    return;
+  }
+
+  // Regex to enforce at least one alphabet, one number, and one symbol
+const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{6,15}$/;
+
+if (!passwordRegex.test(password)) {
+  alert('Password must be between 6 and 8 characters long, and include at least one letter, one number, and one symbol.');
+  return;
+}
+
+if (password !== retypePassword) {
+  alert('Passwords do not match. Please ensure both passwords are the same.');
+  return;
+}
+
+
+
+
+      const userInput = document.getElementById('captchaInput').value;
+  if (userInput === document.getElementById('captchaCode').textContent) {
+    // CAPTCHA Verified, redirect to next form (next HTML page)
+    window.location.href = "index.html";  // Change 'next_form.html' to your actual next form's file name
+  } else {
+    alert('Incorrect CAPTCHA. Please try again.');
+    loadCaptcha(); // Reload CAPTCHA if incorrect
+  }
+    });
+
+    // Toggle password visibility
+    function togglePasswordVisibility(fieldId, toggleElement) {
+      const field = document.getElementById(fieldId);
+      const icon = toggleElement.querySelector('i');
+      if (field.type === 'password') {
+        field.type = 'text';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      } else {
+        field.type = 'password';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      }
+    }
+  </script>
+</body>
+</html>
