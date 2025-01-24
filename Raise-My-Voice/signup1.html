@@ -17,7 +17,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      min-height: 80vh;
       background: #333;
       margin: 0;
     }
@@ -25,6 +25,7 @@
     .container {
       display: flex;
       width: 90%;
+      height: 25%;
       max-width: 800px;
       background: #fff;
       border-radius: 20px;
@@ -217,10 +218,10 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-  <div class="sign-up-heading">Sign Up</div>
+  
   <div class="container">
     <div class="left-panel">
-        <img src="img/WH.jpg" width="350" height="850">
+        <img src="img/WH.jpg" width="350" height="700">
     </div>
     <div class="right-panel">
       <h1>Create an account</h1>
@@ -237,62 +238,7 @@
           <div class="error-message" id="emailError"></div>
         </div>
 
-        <div class="form-group">
-          <label for="designation">Designation</label>
-          <input type="text" id="designation" />
-        </div>
-
-        <div class="form-group">
-          <label for="city">City <span>*</span></label>
-          <select id="city" required>
-            <option value="" disabled selected>Select your city</option>
-         <option value="Agra">Agra</option>
-                <option value="Ahmedabad">Ahmedabad</option>
-                <option value="Bangalore">Bangalore</option>
-                <option value="Bhopal">Bhopal</option>
-                <option value="Chandigarh">Chandigarh</option>
-                <option value="Chennai">Chennai</option>
-                <option value="Coimbatore">Coimbatore</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Erode">Erode</option>
-                <option value="Hyderabad">Hyderabad</option>
-                <option value="Indore">Indore</option>
-                <option value="Jaipur">Jaipur</option>
-                <option value="Kanchipuram">Kanchipuram</option>
-                <option value="Kanpur">Kanpur</option>
-                <option value="Karur">Karur</option>
-                <option value="Kolkata">Kolkata</option>
-                <option value="Lucknow">Lucknow</option>
-                <option value="Madurai">Madurai</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Nagapattinam">Nagapattinam</option>
-                <option value="Nagpur">Nagpur</option>
-                <option value="Namakkal">Namakkal</option>
-                <option value="Patna">Patna</option>
-                <option value="Pollachi">Pollachi</option>
-                <option value="Pondicherry">Pondicherry</option>
-                <option value="Pune">Pune</option>
-                <option value="Rameswaram">Rameswaram</option>
-                <option value="Salem">Salem</option>
-                <option value="Surat">Surat</option>
-                <option value="Thanjavur">Thanjavur</option>
-                <option value="Theni">Theni</option>
-                <option value="Thiruvallur">Thiruvallur</option>
-                <option value="Thiruvarur">Thiruvarur</option>
-                <option value="Thoothukudi">Thoothukudi</option>
-                <option value="Tiruchirappalli">Tiruchirappalli</option>
-                <option value="Tirunelveli">Tirunelveli</option>
-                <option value="Tiruppur">Tiruppur</option>
-                <option value="Tiruvannamalai">Tiruvannamalai</option>
-                <option value="Vadodara">Vadodara</option>
-                <option value="Vellore">Vellore</option>
-                <option value="Viluppuram">Viluppuram</option>
-                <option value="Visakhapatnam">Visakhapatnam</option>
-                <option value="Virudhunagar">Virudhunagar</option>
-            <!-- Add more cities as needed -->
-          </select>
-          <div class="error-message" id="cityError"></div>
-        </div>
+        
 
         <div class="form-group">
           <label for="username">Username <span>*</span></label>
@@ -331,7 +277,7 @@
         <button type="submit" class="btn">Sign Up</button>
         <button type="button" class="google-btn">Sign Up with Google</button>
         <div class="login-link">
-          <p>Already have an account? <a href="login.html">Login</a></p>
+          <p>Already have an account? <a href="form.html">Login</a></p>
         </div>
       </form>
     </div>
@@ -391,36 +337,20 @@ if (!usernameRegex.test(username)) {
     return;
   }
 
-// Regex to enforce at least one alphabet, one number, and one symbol
-  function validatePassword(password) {
-  // Regex for the updated password validation criteria
-  const regex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
   
-  // Check if the password matches the criteria
-  if (!regex.test(password)) {
-    alert(
-      'Password must be at least 8 characters long and contain one uppercase letter, one lowercase letter, one number, and one special character.'
-    );
-    return false;
-  }
-  return true;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+if (!passwordRegex.test(password)) {
+  alert('Password must be between 6 and 8 characters long, and include at least one letter, one number, and one symbol.');
+  return;
 }
 
-// Example usage for validating passwords
-function handlePasswordValidation(password, retypePassword) {
-  // Validate the password criteria
-  if (!validatePassword(password)) {
-    return;
-  }
-
-  // Check if passwords match
-  if (password !== retypePassword) {
-    alert('Passwords do not match. Please ensure both passwords are the same.');
-    return;
-  }
-
-  alert('Password is valid and matches.');
+if (password !== retypePassword) {
+  alert('Passwords do not match. Please ensure both passwords are the same.');
+  return;
 }
+
+
 
 
 
