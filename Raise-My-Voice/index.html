@@ -105,25 +105,28 @@
     </div>
     <!-- Carousel End -->
 
-    <!-- Modal Start -->
-    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="registerModalLabel">Confirm Registration</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to register your complaint?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yes</button>
-                    <a href="Complaint login.html" class="btn btn-primary">Cancel</a>
-                </div>
+<!-- Modal Start -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registerModalLabel">Confirm Registration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to register your complaint?
+            </div>
+            <div class="modal-footer">
+                <!-- Removed data-bs-dismiss here and added onclick to handle redirection -->
+                <button type="button" class="btn btn-secondary" onclick="handleOk()">Yes</button> 
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
-    <!-- Modal End -->
+</div>
+<!-- Modal End -->
+
+
 
 
     <!-- Service Start -->
@@ -246,19 +249,17 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script>
-        function confirmNavigation() {
-            document.getElementById('customModal').style.display = 'flex';
-        }
-
         function handleOk() {
-            document.getElementById('customModal').style.display = 'none';
+            // Close the modal manually
+            var modal = bootstrap.Modal.getInstance(document.getElementById('registerModal')); 
+            modal.hide();
+    
+            // Redirect to the "Complaint login.html" page
             window.location.href = "Complaint login.html";
         }
-
-        function handleCancel() {
-            document.getElementById('customModal').style.display = 'none';
-        }
     </script>
+    
+    
 </body>
 
 
