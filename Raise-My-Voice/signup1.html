@@ -391,17 +391,35 @@ if (!usernameRegex.test(username)) {
     return;
   }
 
-  // Regex to enforce at least one alphabet, one number, and one symbol
-const passwordRegex = /^(?=.[A-Za-z])(?=.\d)(?=.[!@#$%^&()_+\-=\[\]{};':"\\|,.<>\/?]).{6,15}$/;
-
-if (!passwordRegex.test(password)) {
-  alert('Password must be between 6 and 8 characters long, and include at least one letter, one number, and one symbol.');
-  return;
+// Regex to enforce at least one alphabet, one number, and one symbol
+  function validatePassword(password) {
+  // Regex for the updated password validation criteria
+  const regex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+  
+  // Check if the password matches the criteria
+  if (!regex.test(password)) {
+    alert(
+      'Password must be at least 8 characters long and contain one uppercase letter, one lowercase letter, one number, and one special character.'
+    );
+    return false;
+  }
+  return true;
 }
 
-if (password !== retypePassword) {
-  alert('Passwords do not match. Please ensure both passwords are the same.');
-  return;
+// Example usage for validating passwords
+function handlePasswordValidation(password, retypePassword) {
+  // Validate the password criteria
+  if (!validatePassword(password)) {
+    return;
+  }
+
+  // Check if passwords match
+  if (password !== retypePassword) {
+    alert('Passwords do not match. Please ensure both passwords are the same.');
+    return;
+  }
+
+  alert('Password is valid and matches.');
 }
 
 
